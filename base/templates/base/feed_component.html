@@ -5,7 +5,7 @@
         <div class="avatar avatar--small">
           <img src="{{room.host.avatar.url}}" />
         </div>
-        <span>{{room.host.username}}</span>
+        <span>Host @{{room.host.username}}</span>
       </a>
       <div class="roomListRoom__actions">
         <span>{{room.created|timesince}}</span>
@@ -13,7 +13,8 @@
     </div>
     <div class="roomListRoom__content">
       <a href="{% url 'room' room.id %}">{{room.name}}</a>
-     
+      <br>
+      
     </div>
     <div class="roomListRoom__meta">
       <a href="{% url 'room' room.id %}" class="roomListRoom__joined">
@@ -34,6 +35,7 @@
         </svg>
         {{room.participants.all.count}} Joined
       </a>
+      
       <p class="roomListRoom__topic">{{room.topic.name}}</p>
     </div>
   </div>
