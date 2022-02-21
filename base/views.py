@@ -94,8 +94,9 @@ def room(request,pk):
 def userProfile(request,pk):
     user= User.objects.get(id=pk)
 
-    rooms= user.room_set.all()
+    # rooms= user.room_set.all()
     
+    rooms= Room.objects.filter(participants= user)
     room_messages=user.message_set.all()
     topics= Topic.objects.all()
     context={'user':user,'rooms':rooms,'room_messages':room_messages,'topics':topics,}
@@ -187,3 +188,27 @@ def topicsPage(request):
 def activityPage(request):
     room_messages= Message.objects.all()
     return render(request,'base/activity.html',{'room_messages':room_messages,})
+
+
+
+
+
+
+
+##################################
+# class ListThread(View):
+#     def get(self,request,*args,**kwargs):
+#         threads=ThreadModel.objects.filter(Q(user=request.user) | Q(reciever= request.user))
+
+#         context={
+#             'threads': threads
+#         }
+
+#         return render(request,"base/dm.html",context)
+
+
+# class CreateThread(View):
+#     def get(sself,request,*args,**kwargs):
+#         pass
+#     def post(self,request,*args,**kwargs):
+#         pass

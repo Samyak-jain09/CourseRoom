@@ -3,6 +3,7 @@ from django.db import models
 # from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
 from django.contrib.auth.models import AbstractUser
+from django.dispatch import receiver
 
 class User(AbstractUser):
     name= models.CharField(max_length=200, null=True)
@@ -48,3 +49,20 @@ class Message(models.Model):
 
     def __str__(self):
         return self.body[0:50]
+
+
+
+
+
+###############################################################################################################################
+
+# class ThreadModel(models.Model):
+#     user= models.ForeignKey(User, on_delete=models.CASCADE, related_name='+')
+#     receiver= models.ForeignKey(User, on_delete=models.CASCADE, related_name='+')
+
+# class MessageModel(models.Model):
+#     thread= models.ForeignKey('ThreadModel', related_name='+',on_delete=models.CASCADE,blank=True, null=True)
+#     sender_user=models.ForeignKey(User, on_delete=models.CASCADE, related_name='+')
+#     receiver_user=models.ForeignKey(User, on_delete=models.CASCADE, related_name='+')
+#     body= models.CharField(max_length=100)
+#     date= models.DateTimeField(default=timezone.now)
